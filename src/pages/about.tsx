@@ -11,6 +11,7 @@ import {
 } from '@/components/SocialIcons'
 import portraitImage from '@/images/portrait.jpg'
 import Container from '@/components/Container'
+import { MailIcon } from '@/components/Icons'
 
 interface SocialLinkProps {
   className?: string;
@@ -33,22 +34,11 @@ function SocialLink({ className, href, children, icon: Icon }: SocialLinkProps) 
   )
 }
 
-function MailIcon(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
-      <path
-        fillRule="evenodd"
-        d="M6 5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3V8a3 3 0 0 0-3-3H6Zm.245 2.187a.75.75 0 0 0-.99 1.126l6.25 5.5a.75.75 0 0 0 .99 0l6.25-5.5a.75.75 0 0 0-.99-1.126L12 12.251 6.245 7.187Z"
-      />
-    </svg>
-  )
-}
-
 export default function About() {
   return (
     <>
       <Head>
-        <title>About - Spencer Sharp</title>
+        <title>About - Norman Aranez</title>
         <meta
           name="description"
           content="I’m Spencer Sharp. I live in New York City, where I design the future."
@@ -68,58 +58,40 @@ export default function About() {
           </div>
           <div className="lg:order-first lg:row-span-2">
             <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-              I’m Spencer Sharp. I live in New York City, where I design the
-              future.
+              My name is Norman Aranez. Living in Panabo City, Philippines, I am software developer.
             </h1>
             <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
               <p>
-                I’ve loved making things for as long as I can remember, and
-                wrote my first program when I was 6 years old, just two weeks
-                after my mom brought home the brand new Macintosh LC 550 that I
-                taught myself to type on.
+                As a software developer with over 7 years of experience in testing, designing, and maintenance of various software systems. Proficient in React, Typescript, GraphQL, REST API, ASP.NET, MySQL and MSSQL. Seeking a challenging role as a software developer to utilize my skills and knowledge to cater to the specific needs of the people and company.
               </p>
               <p>
-                The only thing I loved more than computers as a kid was space.
-                When I was 8, I climbed the 40-foot oak tree at the back of our
-                yard while wearing my older sister’s motorcycle helmet, counted
-                down from three, and jumped — hoping the tree was tall enough
-                that with just a bit of momentum I’d be able to get to orbit.
+              I have experience in the software development sector and have held senior positions at Redview (Frontend) and HP Outsourcing (Fullstack), where I oversaw the creation of several products and online apps utilizing React, Typescript, GraphQL, Laravel, and Vuejs among other technologies.
               </p>
               <p>
-                I spent the next few summers indoors working on a rocket design,
-                while I recovered from the multiple surgeries it took to fix my
-                badly broken legs. It took nine iterations, but when I was 15 I
-                sent my dad’s Blackberry into orbit and was able to transmit a
-                photo back down to our family computer from space.
-              </p>
-              <p>
-                Today, I’m the founder of Planetaria, where we’re working on
-                civilian space suits and manned shuttle kits you can assemble at
-                home so that the next generation of kids really <em>can</em>{' '}
-                make it to orbit — from the comfort of their own backyards.
+                In addition to my work experience, I have received a Bachelor of Science in Information Technology and have strong communication and problem-solving skills. Also proficient in various technologies including MySQL, Stored Procedures, Database Design, Triggers, Views, Java, Codeigniter, webpack, gulp, grunt, php, CSS/CSS3, html, Photoshop, Sage, and are familiar with operating systems including Linux, Windows, and IOS.
               </p>
             </div>
           </div>
           <div className="lg:pl-20">
             <ul role="list">
-              <SocialLink href="#" icon={TwitterIcon}>
+              <SocialLink href="https://twitter.com/AranezNorman" icon={TwitterIcon}>
                 Follow on Twitter
               </SocialLink>
-              <SocialLink href="#" icon={InstagramIcon} className="mt-4">
+              <SocialLink href="https://www.instagram.com/normanaranez/" icon={InstagramIcon} className="mt-4">
                 Follow on Instagram
               </SocialLink>
-              <SocialLink href="#" icon={GitHubIcon} className="mt-4">
+              <SocialLink href="https://github.com/normanaranez" icon={GitHubIcon} className="mt-4">
                 Follow on GitHub
               </SocialLink>
-              <SocialLink href="#" icon={LinkedInIcon} className="mt-4">
+              <SocialLink href="https://www.linkedin.com/in/norman-ara%C3%B1ez-71766b137/" icon={LinkedInIcon} className="mt-4">
                 Follow on LinkedIn
               </SocialLink>
               <SocialLink
-                href="mailto:spencer@planetaria.tech"
+                href="mailto:araneznorman12@gmail.com"
                 icon={MailIcon}
                 className="mt-8 border-t border-zinc-100 pt-8 dark:border-zinc-700/40"
               >
-                spencer@planetaria.tech
+                araneznorman12@gmail.com
               </SocialLink>
             </ul>
           </div>
