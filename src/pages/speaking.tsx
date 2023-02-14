@@ -1,10 +1,14 @@
 import Head from 'next/head'
-
 import { Card } from '@/components/Card'
 import { Section } from '@/components/Section'
 import { SimpleLayout } from '@/components/SimpleLayout'
 
-function SpeakingSection({ children, ...props }) {
+interface SpeakingSectionProps {
+  title: string;
+  children: React.ReactNode;
+}
+
+function SpeakingSection({ children, ...props }: SpeakingSectionProps) {
   return (
     <Section {...props}>
       <div className="space-y-16">{children}</div>
@@ -12,7 +16,15 @@ function SpeakingSection({ children, ...props }) {
   )
 }
 
-function Appearance({ title, description, event, cta, href }) {
+interface AppearanceProps {
+  title: string;
+  description: string;
+  event: string;
+  cta: string;
+  href: string;
+}
+
+function Appearance({ title, description, event, cta, href }: AppearanceProps) {
   return (
     <Card as="article">
       <Card.Title as="h3" href={href}>

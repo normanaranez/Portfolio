@@ -2,11 +2,12 @@ import ReactDOMServer from 'react-dom/server'
 import { Feed } from 'feed'
 import { mkdir, writeFile } from 'fs/promises'
 
+import React from 'react'
 import { getAllArticles } from './getAllArticles'
 
-export async function generateRssFeed() {
+export async function generateRssFeed(): Promise<void> {
   let articles = await getAllArticles()
-  let siteUrl = process.env.NEXT_PUBLIC_SITE_URL
+  let siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? ''
   let author = {
     name: 'Spencer Sharp',
     email: 'spencer@planetaria.tech',
@@ -30,7 +31,7 @@ export async function generateRssFeed() {
   for (let article of articles) {
     let url = `${siteUrl}/articles/${article.slug}`
     let html = ReactDOMServer.renderToStaticMarkup(
-      <article.component isRssFeed />
+      React.createElement(article.component, { isRssFeed: true })
     )
 
     feed.addItem({

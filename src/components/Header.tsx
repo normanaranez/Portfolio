@@ -4,11 +4,11 @@ import { useRouter } from 'next/router'
 import { Popover, Transition } from '@headlessui/react'
 import clsx from 'clsx'
 
-import { Container } from '@/components/Container'
 import avatarImage from '@/images/avatar.jpg'
-import { Fragment, useEffect, useRef } from 'react'
+import { Fragment, HTMLAttributes, useEffect, useRef } from 'react'
+import Container from './Container'
 
-function CloseIcon(props) {
+function CloseIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
       <path
@@ -23,7 +23,7 @@ function CloseIcon(props) {
   )
 }
 
-function ChevronDownIcon(props) {
+function ChevronDownIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 8 6" aria-hidden="true" {...props}>
       <path
@@ -37,7 +37,7 @@ function ChevronDownIcon(props) {
   )
 }
 
-function SunIcon(props) {
+function SunIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -56,7 +56,7 @@ function SunIcon(props) {
   )
 }
 
-function MoonIcon(props) {
+function MoonIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
       <path
@@ -69,7 +69,12 @@ function MoonIcon(props) {
   )
 }
 
-function MobileNavItem({ href, children }) {
+interface MobileNavItemProps {
+  href: string;
+  children: React.ReactNode;
+}
+
+function MobileNavItem({ href, children }: MobileNavItemProps) {
   return (
     <li>
       <Popover.Button as={Link} href={href} className="block py-2">
@@ -79,7 +84,11 @@ function MobileNavItem({ href, children }) {
   )
 }
 
-function MobileNavigation(props) {
+interface MobileNavigationProps {
+  [key: string]: any;
+}
+
+function MobileNavigation(props: MobileNavigationProps) {
   return (
     <Popover {...props}>
       <Popover.Button className="group flex items-center rounded-full bg-white/90 px-4 py-2 text-sm font-medium text-zinc-800 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10 dark:hover:ring-white/20">
@@ -135,7 +144,12 @@ function MobileNavigation(props) {
   )
 }
 
-function NavItem({ href, children }) {
+interface NavItemProps {
+  href: string;
+  children: React.ReactNode;
+}
+
+function NavItem({ href, children }: NavItemProps) {
   let isActive = useRouter().pathname === href
 
   return (
@@ -158,7 +172,11 @@ function NavItem({ href, children }) {
   )
 }
 
-function DesktopNavigation(props) {
+interface DesktopNavigationProps {
+  [key: string]: any;
+}
+
+function DesktopNavigation(props: DesktopNavigationProps) {
   return (
     <nav {...props}>
       <ul className="flex rounded-full bg-white/90 px-3 text-sm font-medium text-zinc-800 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10">
@@ -207,13 +225,17 @@ function ModeToggle() {
   )
 }
 
-function clamp(number, a, b) {
+function clamp(number: number, a: number, b: number) {
   let min = Math.min(a, b)
   let max = Math.max(a, b)
   return Math.min(Math.max(number, min), max)
 }
 
-function AvatarContainer({ className, ...props }) {
+interface AvatarContainerProps extends HTMLAttributes<HTMLDivElement> {
+  className?: string;
+}
+
+function AvatarContainer({ className, ...props }: AvatarContainerProps) {
   return (
     <div
       className={clsx(
@@ -225,7 +247,13 @@ function AvatarContainer({ className, ...props }) {
   )
 }
 
-function Avatar({ large = false, className, ...props }) {
+interface AvatarProps {
+  large?: boolean;
+  className?: string;
+  style?: any;
+}
+
+function Avatar({ large = false, className, ...props }: AvatarProps) {
   return (
     <Link
       href="/"
@@ -250,24 +278,24 @@ function Avatar({ large = false, className, ...props }) {
 export function Header() {
   let isHomePage = useRouter().pathname === '/'
 
-  let headerRef = useRef()
-  let avatarRef = useRef()
+  let headerRef = useRef<HTMLHeadElement | any>(null)
+  let avatarRef = useRef<HTMLDivElement | any>(null)
   let isInitial = useRef(true)
 
   useEffect(() => {
     let downDelay = avatarRef.current?.offsetTop ?? 0
     let upDelay = 64
 
-    function setProperty(property, value) {
+    function setProperty(property: string, value: string) {
       document.documentElement.style.setProperty(property, value)
     }
 
-    function removeProperty(property) {
+    function removeProperty(property: string) {
       document.documentElement.style.removeProperty(property)
     }
 
     function updateHeaderStyles() {
-      let { top, height } = headerRef.current.getBoundingClientRect()
+      let { top, height } = headerRef.current!.getBoundingClientRect()
       let scrollY = clamp(
         window.scrollY,
         0,
@@ -331,7 +359,7 @@ export function Header() {
       let borderTransform = `translate3d(${borderX}rem, 0, 0) scale(${borderScale})`
 
       setProperty('--avatar-border-transform', borderTransform)
-      setProperty('--avatar-border-opacity', scale === toScale ? 1 : 0)
+      setProperty('--avatar-border-opacity', scale === toScale ? '1': '0')
     }
 
     function updateStyles() {
@@ -345,10 +373,14 @@ export function Header() {
     window.addEventListener('resize', updateStyles)
 
     return () => {
-      window.removeEventListener('scroll', updateStyles, { passive: true })
+      window.removeEventListener('scroll', updateStyles)
       window.removeEventListener('resize', updateStyles)
     }
   }, [isHomePage])
+
+  const headerInnerPosition: any = 'var(--header-inner-position)';
+  const headerPosition: any = 'var(--header-position)';
+  const avatarImageTransform: any = 'var(--avatar-image-transform)';
 
   return (
     <>
@@ -367,11 +399,11 @@ export function Header() {
             />
             <Container
               className="top-0 order-last -mb-3 pt-3"
-              style={{ position: 'var(--header-position)' }}
+              style={{ position: headerPosition }}
             >
               <div
                 className="top-[var(--avatar-top,theme(spacing.3))] w-full"
-                style={{ position: 'var(--header-inner-position)' }}
+                style={{ position: headerInnerPosition }}
               >
                 <div className="relative">
                   <AvatarContainer
@@ -384,7 +416,7 @@ export function Header() {
                   <Avatar
                     large
                     className="block h-16 w-16 origin-left"
-                    style={{ transform: 'var(--avatar-image-transform)' }}
+                    style={{ transform: avatarImageTransform }}
                   />
                 </div>
               </div>
@@ -394,11 +426,11 @@ export function Header() {
         <div
           ref={headerRef}
           className="top-0 z-10 h-16 pt-6"
-          style={{ position: 'var(--header-position)' }}
+          style={{ position: headerPosition }}
         >
           <Container
             className="top-[var(--header-top,theme(spacing.6))] w-full"
-            style={{ position: 'var(--header-inner-position)' }}
+            style={{ position: headerInnerPosition }}
           >
             <div className="relative flex gap-4">
               <div className="flex flex-1">

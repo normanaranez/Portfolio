@@ -1,6 +1,6 @@
+import { SimpleLayout } from '@/components/SimpleLayout'
 import Head from 'next/head'
 
-import { SimpleLayout } from '@/components/SimpleLayout'
 
 export default function ThankYou() {
   return (

@@ -1,11 +1,15 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 
-import { Container } from '@/components/Container'
-import { formatDate } from '@/lib/formatDate'
-import { Prose } from '@/components/Prose'
+import { Container } from './Container';
+import { formatDate } from '@/lib/formatDate';
+import { Prose } from './Prose';
 
-function ArrowLeftIcon(props) {
+interface ArrowLeftIconProps {
+  [key: string]: any;
+}
+
+function ArrowLeftIcon(props: ArrowLeftIconProps) {
   return (
     <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" {...props}>
       <path
@@ -18,12 +22,21 @@ function ArrowLeftIcon(props) {
   )
 }
 
-export function ArticleLayout({
-  children,
-  meta,
-  isRssFeed = false,
-  previousPathname,
-}) {
+interface ArticleLayoutProps {
+  children: React.ReactNode;
+  meta: {
+    title: string;
+    description: string;
+    date: string;
+  };
+  isRssFeed?: boolean;
+  previousPathname?: string;
+}
+
+export function ArticleLayout(props: ArticleLayoutProps) {
+
+  const { children, meta, isRssFeed = false, previousPathname } = props;
+
   let router = useRouter()
 
   if (isRssFeed) {

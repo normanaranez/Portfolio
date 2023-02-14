@@ -1,13 +1,13 @@
 import Image from 'next/image'
 import Head from 'next/head'
 
-import { Card } from '@/components/Card'
-import { SimpleLayout } from '@/components/SimpleLayout'
 import logoAnimaginary from '@/images/logos/animaginary.svg'
 import logoCosmos from '@/images/logos/cosmos.svg'
 import logoHelioStream from '@/images/logos/helio-stream.svg'
 import logoOpenShuttle from '@/images/logos/open-shuttle.svg'
 import logoPlanetaria from '@/images/logos/planetaria.svg'
+import { SimpleLayout } from '../components/SimpleLayout'
+import { Card } from '../components/Card'
 
 const projects = [
   {
@@ -47,7 +47,7 @@ const projects = [
   },
 ]
 
-function LinkIcon(props) {
+function LinkIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
       <path

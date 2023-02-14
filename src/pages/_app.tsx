@@ -1,22 +1,24 @@
 import { useEffect, useRef } from 'react'
 
-import { Footer } from '@/components/Footer'
-import { Header } from '@/components/Header'
-
 import '@/styles/tailwind.css'
 import 'focus-visible'
+import { AppProps } from 'next/app'
+import { Header } from '@/components/Header'
+import { Footer } from '@/components/Footer'
 
-function usePrevious(value) {
-  let ref = useRef()
-
+function usePrevious<T>(value: T): T {
+  // The ref object is a generic container whose current property is mutable ...
+  // ... and can hold any value, similar to an instance property on a class
+  const ref: any = useRef<T>();
+  // Store current value in ref
   useEffect(() => {
-    ref.current = value
-  }, [value])
-
-  return ref.current
+    ref.current = value;
+  }, [value]); // Only re-run if value changes
+  // Return previous value (happens before update in useEffect above)
+  return ref.current;
 }
 
-export default function App({ Component, pageProps, router }) {
+export default function App({ Component, pageProps, router }: AppProps) {
   let previousPathname = usePrevious(router.pathname)
 
   return (

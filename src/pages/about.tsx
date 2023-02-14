@@ -3,7 +3,6 @@ import Head from 'next/head'
 import Link from 'next/link'
 import clsx from 'clsx'
 
-import { Container } from '@/components/Container'
 import {
   TwitterIcon,
   InstagramIcon,
@@ -11,8 +10,16 @@ import {
   LinkedInIcon,
 } from '@/components/SocialIcons'
 import portraitImage from '@/images/portrait.jpg'
+import Container from '@/components/Container'
 
-function SocialLink({ className, href, children, icon: Icon }) {
+interface SocialLinkProps {
+  className?: string;
+  href: string;
+  children: React.ReactNode;
+  icon: React.FC<React.SVGProps<SVGSVGElement>>;
+}
+
+function SocialLink({ className, href, children, icon: Icon }: SocialLinkProps) {
   return (
     <li className={clsx(className, 'flex')}>
       <Link
@@ -26,7 +33,7 @@ function SocialLink({ className, href, children, icon: Icon }) {
   )
 }
 
-function MailIcon(props) {
+function MailIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
       <path
