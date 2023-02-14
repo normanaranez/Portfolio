@@ -175,7 +175,7 @@ export default function Home({ articles }: any) {
             Frontend/Backend Developer
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            I am Norman, a versatile software developer with extensive experience in both frontend and backend development. As a full-stack developer, I can bring a project from conception to completion with proficiency in both the client and server-side of a web application. I am passionate about creating solutions that improve people's lives and make a positive impact on the world.
+            {`I am Norman, a versatile software developer with extensive experience in both frontend and backend development. As a full-stack developer, I can bring a project from conception to completion with proficiency in both the client and server-side of a web application. I am passionate about creating solutions that improve people's lives and make a positive impact on the world.`}
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink

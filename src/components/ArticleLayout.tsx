@@ -1,6 +1,7 @@
-import Head from 'next/head'
-import { useRouter } from 'next/router'
+'use client';
 
+import Head from 'next/head'
+import { NextRouter, useRouter } from 'next/router'
 import { Container } from './Container';
 import { formatDate } from '@/lib/formatDate';
 import { Prose } from './Prose';
@@ -31,13 +32,14 @@ interface ArticleLayoutProps {
   };
   isRssFeed?: boolean;
   previousPathname?: string;
+  router: NextRouter;
 }
 
 export function ArticleLayout(props: ArticleLayoutProps) {
 
   const { children, meta, isRssFeed = false, previousPathname } = props;
-
-  let router = useRouter()
+  
+  let router = useRouter();
 
   if (isRssFeed) {
     return children
